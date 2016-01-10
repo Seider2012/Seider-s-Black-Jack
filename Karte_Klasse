@@ -1,0 +1,104 @@
+
+public class Karte {
+
+	private enum farben {
+		Rot, Schwarz
+	}
+
+	public int zahl = 0;
+	private farben farbe;
+	private String wert;
+	private int art = -1;
+
+	public Karte() {
+		super();
+		this.zahl = 0;
+		this.art = 1;
+		this.wert = zahlInWert(0);
+		artInFarbe();
+	}
+
+	public Karte(int zahl2) {
+		super();
+		this.zahl = zahl2;
+		this.art = 1;
+		this.wert = zahlInWert(0);
+		artInFarbe();
+	}
+
+	public Karte(int zahl, int art) {
+		super();
+		this.zahl = zahl;
+		this.art = art;
+		this.wert = zahlInWert(zahl);
+		artInFarbe();
+	}
+
+	public int getZahl() {
+		return this.zahl;
+	}
+
+	public void setZahl(int zahl2) {
+		this.zahl = zahl2;
+		this.wert = zahlInWert(zahl2);
+	}
+
+	public farben getFarbe() {
+		return farbe;
+	}
+
+	public int getArt() {
+		return art;
+	}
+
+	public void setArt(int art) {
+		this.art = art;
+		artInFarbe();
+	}
+
+	public String getWert() {
+		return wert;
+	}
+
+	public String zahlInWert(int zahl) {
+		if (zahl == 1) {
+			return "ASS";
+		} else if (zahl == 13) {
+			return "KOENIG";
+		} else if (zahl == 12) {
+			return "QUEEN";
+		} else if (zahl == 11) {
+			return "BUBE";
+		} else {
+			return String.valueOf(zahl);
+		}
+	}
+
+	private void artInFarbe() {
+		if ((this.art == 1) || (this.art == 2)) {
+			this.farbe = farben.Rot;
+		} else {
+			this.farbe = farben.Schwarz;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Karte [zahl=" + zahl + ", farbe=" + farbe + ", wert=" + wert
+				+ ", art=" + art + "]";
+	}
+
+	public String getArtWort() {
+		// TODO Auto-generated method stub
+		if (this.art == 1) {
+			return "Herz";
+		} else if (this.art == 2) {
+			return "Karo";
+		} else if (this.art == 3) {
+			return "Kreuz";
+		} else {
+			return "Pik";
+		}
+	}
+
+}
