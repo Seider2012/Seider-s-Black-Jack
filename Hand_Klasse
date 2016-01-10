@@ -1,0 +1,65 @@
+import java.util.Arrays;
+import java.util.Random;
+
+public class Hand {
+
+	private Karte[] karten = new Karte[21];
+
+	public Hand(Karte[] pokerkarten, int kartenanzahl) {
+		super();
+		for (int i = 0; i < 2; i++) {
+			this.karten[i] = karteZiehen(pokerkarten, kartenanzahl);
+			kartenanzahl++;
+		}
+	}
+
+	@Override
+	public String toString() {
+		String wort = this.karten[0].getWert() + "  "
+				+ this.karten[0].getArtWort();
+		for (int i = 1; i < 21; i++) {
+			if (this.karten[i] != null) {
+				wort += " ," + this.karten[i].getWert() + "  "
+						+ this.karten[i].getArtWort();
+			}
+		}
+		return "Karten = " + wort + " ;";
+	}
+
+	public Karte[] getKarten() {
+		return karten;
+	}
+
+	public void setKarten(Karte[] karten) {
+		this.karten = karten;
+	}
+
+	public void sortieren() {
+		int[] zahlen = new int[21];
+		for (int i = 0; i < this.karten.length; i++) {
+			zahlen[i] = karten[i].getZahl();
+		}
+		for (int i = 0; i < karten.length; i++) {
+			this.karten[i].setZahl(selectionsort(zahlen)[i]);
+		}
+		for (int i = 0; i < this.karten.length; i++) {
+			System.out.print(this.karten[i].getWert() + ", ");
+		}
+
+	}
+
+	private int[] selectionsort(int[] sortieren) {
+		for (int i = 0; i < sortieren.length - 1; i++) {
+			for (int j = i + 1; j < sortieren.length; j++) {
+				if (sortieren[i] > sortieren[j]) {
+					int temp = sortieren[i];
+					sortieren[i] = sortieren[j];
+					sortieren[j] = temp;
+				}
+			}
+		}
+
+		return sortieren;
+	}
+
+}
