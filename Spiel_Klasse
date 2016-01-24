@@ -96,7 +96,6 @@ public class Spiel {
 				.getArt());
 		pokerkarten[pokerkarten.length - 1 - kartenanzahl].setZahl(verteilte
 				.getZahl());
-
 		return verteilte;
 	}
 }
